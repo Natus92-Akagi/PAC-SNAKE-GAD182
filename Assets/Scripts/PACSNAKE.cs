@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+
 public class PACSNAKE : MonoBehaviour, IPacSnakeable, ICollisionable, IInputable, IDeathable
 {
     [SerializeField] SpriteRenderer pacsnakeRenderer;
@@ -14,11 +15,22 @@ public class PACSNAKE : MonoBehaviour, IPacSnakeable, ICollisionable, IInputable
 
     private Vector2 currentDirection = Vector2.right;
     private List<Transform> bodySegments = new List<Transform>();
-    private int pendingGrowth = 0;
+    private int pendingGrowth = 3;
 
     private float moveTimer;
     public float moveSpeed = 0.2f;
-    
+    InputSystem_Actions actions;
+    Vector2 moveInput;
+
+    void OnEnable()
+    {
+        if(actions==null)
+        {
+            actions= new InputSystem_Actions();
+            actions.Player.Move.performed+= i => moveInput = i.ReadValue<Vector2>();
+            actions.Enable();
+        }
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,9 +44,25 @@ public class PACSNAKE : MonoBehaviour, IPacSnakeable, ICollisionable, IInputable
         moveTimer += Time.deltaTime;
         if ( moveTimer >= moveSpeed)
         {
+            if(moveInput.magnitude>0.5f)
+                currentDirection = moveInput;
             Move(currentDirection, tail);
             moveTimer = 0f;
         }
+        //float minX = -8.5f;
+        //float maxX = 8.5f;
+        //float minY = -4.5f;
+        //float maxY = 4.5f;
+
+        //Vector3 pos = transform.position;
+
+        //if (pos.x < minX) pos.x = maxX;
+        //else if (pos.x > maxX) pos.x = minX;
+        
+        //if (pos.y < minY) pos.y = maxY;
+        //else if (pos.y > maxY) pos.y = minY;
+       
+        //transform.position = pos;
     }
 
     public void Move(Vector2 direction, GameObject tail)
@@ -46,6 +74,7 @@ public class PACSNAKE : MonoBehaviour, IPacSnakeable, ICollisionable, IInputable
         head.transform.position += (Vector3)currentDirection;
 
         GameObject newSegment = Instantiate(bodySegmentPrefab, oldPosition, Quaternion.identity);
+        newSegment.transform.localScale = new Vector2(0.5f, 0.5f);
         bodySegments.Insert(0, newSegment.transform);
 
 
@@ -58,6 +87,7 @@ public class PACSNAKE : MonoBehaviour, IPacSnakeable, ICollisionable, IInputable
         {
            
             Transform tailTransform = bodySegments[bodySegments.Count - 1];
+            tail.transform.position = tailTransform.position;
             bodySegments.RemoveAt(bodySegments.Count - 1);
             Destroy(tailTransform.gameObject);
         }
@@ -97,8 +127,9 @@ public class PACSNAKE : MonoBehaviour, IPacSnakeable, ICollisionable, IInputable
     }
     public Vector2 GetInput()
     {
-        // Implement logic to get input from the player
-        return Vector2.zero;
+        
+        
+        return moveInput;
     }
     public void Die()
     {
