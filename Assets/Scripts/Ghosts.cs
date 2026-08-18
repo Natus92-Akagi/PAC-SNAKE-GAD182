@@ -62,7 +62,7 @@ public class Ghosts : MonoBehaviour, IGhostInteractable, IDeathable, IScoreable
 
         transform.position = pos;
 
-        fleeTimer = 2f; // Reset the flee timer to 2 seconds
+        
         if (fleeTimer > 0)
         {
             fleeTimer -= Time.deltaTime;
@@ -91,7 +91,8 @@ public class Ghosts : MonoBehaviour, IGhostInteractable, IDeathable, IScoreable
 
         if (other.CompareTag("Player"))
         {
-            Flee();
+            fleeTimer = 2f; // Reset the flee timer to 2 seconds
+            //Flee();
         }
     }
     public void Flee() 

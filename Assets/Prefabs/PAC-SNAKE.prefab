@@ -298,6 +298,8 @@ GameObject:
   m_Component:
   - component: {fileID: 775453086010552987}
   - component: {fileID: 3992434555985609563}
+  - component: {fileID: 3691812484495089286}
+  - component: {fileID: 101623202274749697}
   m_Layer: 0
   m_Name: PAC-SNAKE
   m_TagString: Player
@@ -352,10 +354,53 @@ MonoBehaviour:
   - {fileID: 5602816553119822230, guid: 2232037c99ef81e438884476f6cb8472, type: 3}
   - {fileID: -5289685694389513120, guid: 2232037c99ef81e438884476f6cb8472, type: 3}
   - {fileID: -3593041436829981069, guid: 2232037c99ef81e438884476f6cb8472, type: 3}
-  bodySegmentPrefab: {fileID: 6907285476775545378}
+  bodySegmentPrefab: {fileID: 6245353139392901922, guid: ff6461790035ce443a8ef84627790a36, type: 3}
   tail: {fileID: 4358918916666627410}
   head: {fileID: 2818117152395710873}
   moveSpeed: 0.2
+--- !u!114 &3691812484495089286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7249691550027339627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6d85300cb31f5844881850afdf4b3f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftWarpX: -8.5
+  rightWarpX: 8.5
+  topWarpY: 4.5
+  bottomWarpY: -4.5
+--- !u!50 &101623202274749697
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7249691550027339627}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &680158014258919680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -408,6 +453,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Body
       objectReference: {fileID: 0}
+    - target: {fileID: 6245353139392901922, guid: ff6461790035ce443a8ef84627790a36, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -416,10 +465,5 @@ PrefabInstance:
 --- !u!4 &1899876019095725039 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1382006059475032815, guid: ff6461790035ce443a8ef84627790a36, type: 3}
-  m_PrefabInstance: {fileID: 680158014258919680}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6907285476775545378 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6245353139392901922, guid: ff6461790035ce443a8ef84627790a36, type: 3}
   m_PrefabInstance: {fileID: 680158014258919680}
   m_PrefabAsset: {fileID: 0}
