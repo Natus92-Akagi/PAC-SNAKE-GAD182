@@ -8,7 +8,7 @@ using UnityEngine;
     }
     public interface ICollisionable
     {
-        void OnCollisionEnter2D(Collision2D collision);
+        void OnCollisionEnter2D(Collider2D collision);
     }
     public interface IInputable
     {
@@ -16,7 +16,7 @@ using UnityEngine;
     }
     public interface IScoreable
     {
-        int GetScore();
+        //static int GetScore();
         void AddScore(int score);
     }
     public interface IModeable

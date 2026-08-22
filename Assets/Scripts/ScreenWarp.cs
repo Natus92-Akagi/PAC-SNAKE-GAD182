@@ -7,6 +7,7 @@ public class ScreenWarp : MonoBehaviour
 
     [SerializeField] private float topWarpY = 4.5f;
     [SerializeField] private float bottomWarpY = -4.5f;
+    [SerializeField] GameObject head;
 
     private Rigidbody2D rb;
 
@@ -17,7 +18,7 @@ public class ScreenWarp : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 pos = rb.position;
+        Vector2 pos = head.transform.position;
 
         if (pos.x < leftWarpX)
         {
@@ -37,7 +38,7 @@ public class ScreenWarp : MonoBehaviour
             pos.y = bottomWarpY;
         }
 
-        rb.position = pos;
+        head.transform.position = pos;
     }
 
 

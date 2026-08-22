@@ -106,7 +106,7 @@ public class Ghosts : MonoBehaviour, IGhostInteractable, IDeathable, IScoreable
 
     }
   
-    public int GetScore()
+    static public int GetScore()
     {
         return globalScore;
     }
